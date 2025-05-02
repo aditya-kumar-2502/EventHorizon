@@ -1,10 +1,9 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
-import { getAllTasks } from '../services/taskService';
-import { Task } from '../services/taskService';
+import { getAllTasks, Task } from '../src/services/taskService';
 import { useFocusEffect } from '@react-navigation/native';
-import { createTables } from '@/db/schema';
+import { createTables } from '@/src/db/schema';
 
 export default function Index() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -24,7 +23,7 @@ export default function Index() {
       fetchTasks();
     }, [])
   );
-  
+
   return (
     <View style={{ flex: 1, padding: 20 }}>
       <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>

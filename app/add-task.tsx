@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
-import { addTask } from '../services/taskService';
+import { addTask } from '../src/services/taskService';
 
 export default function AddTaskScreen() {
   const [taskName, setTaskName] = useState('');
