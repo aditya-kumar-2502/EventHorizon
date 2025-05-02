@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
-import { getAllTasks, Task } from '../src/services/taskService';
+import { getAllTasks } from '../src/services/taskService';
+import { Task } from '../src/model/task';
 import { useFocusEffect } from '@react-navigation/native';
 import { createTables } from '@/src/db/schema';
 
@@ -39,7 +40,7 @@ export default function Index() {
         )}
       />
       <TouchableOpacity
-        onPress={() => router.push('/add-task')} // Navigate to Add Task screen
+        onPress={() => router.push('/task/create')} // Navigate to Add Task screen
         style={{
           backgroundColor: '#007bff',
           padding: 10,

@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
-import { addTask } from '../src/services/taskService';
+import { addTask } from '../../src/services/taskService';
 
 export default function AddTaskScreen() {
   const [taskName, setTaskName] = useState('');
   const router = useRouter();
 
   const handleAddTask = async () => {
-    if (!taskName.trim()) {
-      Alert.alert('Task name is required');
-      return;
-    }
+    // if (!taskName.trim()) {
+    //   Alert.alert('Task name is required');
+    //   return;
+    // }
 
     try {
-      await addTask(taskName);
+      // TODO: Uncomment the following line to add the task
+      // await addTask(taskName);
       setTaskName('');
       router.back(); // Navigate back to home screen
     } catch (error) {
