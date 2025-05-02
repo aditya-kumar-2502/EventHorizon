@@ -3,16 +3,22 @@ import { db } from '../db/db';
 
 import type { Task } from '../model/task';
 
-export const addTask = (name: string): Promise<SQLiteRunResult> => {
-    return db.runAsync(
-        `INSERT INTO Task (name) VALUES (?)`,
-        [name]
+export const addTask = (name: string, description: string, status: string): SQLiteRunResult => {
+    return db.runSync(
+        `INSERT INTO Task (name, description, status) VALUES (?, ?, ?)`,
+        [name, description, status]
     );
 };
 
-
-export const getAllTasks = (): Promise<Task[]> => {
-    return db.getAllAsync(
+export const getAllTasks = (): Task[] => {
+    return db.getAllSync(
         `SELECT * FROM Task`
-    ) as Promise<Task[]>;
+    ) as Task[];
+};
+
+export const getTask = (id: number): Task => {
+    return db.getFirstSync(
+        `SELECT * FROM Task WHERE id = ?`,
+        [id]
+    ) as Task;
 };

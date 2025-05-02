@@ -1,21 +1,20 @@
 import { db } from './db';
 
 export const createTables = () => {
-    db.execSync(`DELETE FROM Event`);
-    db.execSync(`DELETE FROM Task`);
-    db.execSync(`DROP TABLE IF EXISTS Event`);
-    db.execSync(`DROP TABLE IF EXISTS Task`);
-    db.execSync(`CREATE TABLE IF NOT EXISTS Task (
+    // db.execSync(`DROP TABLE IF EXISTS task`);
+    // db.execSync(`DROP TABLE IF EXISTS events`);
+    db.execSync(`CREATE TABLE IF NOT EXISTS task (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL
-        )`);
-    db.execSync(`CREATE TABLE IF NOT EXISTS Event (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        task_id INTEGER NOT NULL,
-        start_time string NOT NULL,
-        end_time string NOT NULL,
-        todo_description TEXT,
-        completed_description TEXT,
-        FOREIGN KEY (task_id) REFERENCES Task(id)
+        name TEXT NOT NULL,
+        description TEXT,
+        status TEXT NOT NULL
     )`);
+    db.execSync(`CREATE TABLE IF NOT EXISTS events (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        taskId INTEGER NOT NULL,
+        startTime TEXT NOT NULL,
+        endTime TEXT NOT NULL,
+        description TEXT,
+        FOREIGN KEY (taskId) REFERENCES tasks(id) ON DELETE CASCADE
+    );`);
 };

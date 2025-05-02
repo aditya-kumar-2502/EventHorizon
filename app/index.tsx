@@ -14,8 +14,8 @@ export default function Index() {
     createTables();
   }, []);
 
-  const fetchTasks = async () => {
-    const allTasks = await getAllTasks();
+  const fetchTasks = () => {
+    const allTasks =  getAllTasks();
     setTasks(allTasks);
   };
 
@@ -35,7 +35,15 @@ export default function Index() {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View style={{ marginBottom: 10 }}>
-            <Text>{item.name}</Text>
+            <TouchableOpacity style={{
+                backgroundColor: '#007bff',
+                padding: 10,
+                borderRadius: 5,
+                marginTop: 20,
+              }} 
+              onPress={() => router.push(`/task/${item.id}`)}>
+                <Text style={{ color: 'white', textAlign: 'center' }} >{item.name}</Text>
+            </TouchableOpacity>
           </View>
         )}
       />
