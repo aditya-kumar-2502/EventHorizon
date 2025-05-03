@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
-import { getAllTasks } from '../src/services/taskService';
+import { addTask, getAllTasks } from '../src/services/taskService';
 import { Task } from '../src/model/task';
 import { useFocusEffect } from '@react-navigation/native';
 import { createTables } from '@/src/db/schema';
@@ -12,6 +12,8 @@ export default function Index() {
 
   useEffect(() => {
     createTables();
+    addTask('Task 1', 'Description 1', 'Not Assigned');
+    addTask('Task 2', 'Description 2', 'Not Assigned');
   }, []);
 
   const fetchTasks = () => {
@@ -53,10 +55,22 @@ export default function Index() {
           backgroundColor: '#007bff',
           padding: 10,
           borderRadius: 5,
-          marginTop: 20,
+          marginTop: 5,
         }}
       >
         <Text style={{ color: 'white', textAlign: 'center' }}>Add Task</Text>
+      </TouchableOpacity>
+      
+      <TouchableOpacity
+        onPress={() => router.push('/task')} // Navigate to Add Task screen
+        style={{
+          backgroundColor: '#007bff',
+          padding: 10,
+          borderRadius: 5,
+          marginTop: 5,
+        }}
+      >
+        <Text style={{ color: 'white', textAlign: 'center' }}>Create Event</Text>
       </TouchableOpacity>
     </View>
   );
